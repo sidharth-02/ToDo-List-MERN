@@ -11,8 +11,8 @@ const TodoSchema = new Schema({
         default: false
     },
     timestamp: {
-        type: String,
-        default: Date.now()
+        type: Date,
+        default: Date.now
     }
 });
 
