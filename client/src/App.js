@@ -58,11 +58,28 @@ function App() {
             setTodos([...todos, data]);
             setPopupActive(false);
             setNewTodo("");
+            // console.log(data);
+
         }else{
             setPopupActive(false);
         }
-        
     }
+
+    const formatTimestamp = (timeStamp) => {
+        const date = new Date(timeStamp);
+        let hours = date.getHours().toString().padStart(2, "0");
+        let mins = date.getMinutes().toString().padStart(2,"0");
+
+        const ampm = (hours >= 12) ? 'pm'  : 'am';
+
+        hours = hours%12;
+        hours = (hours) ? hours:12;
+
+        hours = hours.toString().padStart(2, "0");
+        
+        return `${hours}:${mins} ${ampm}`;
+    }
+
 
     return (
         <div className="App">
@@ -77,7 +94,7 @@ function App() {
                         <div className="checkbox"  ></div>
 
                         <div className="text">{todo.text}</div>
-                        
+                        <div className="time_stamp">{formatTimestamp(todo.timestamp)}</div>
                         
                         <div className="delete-todo" 
                             onClick={(event) => {
